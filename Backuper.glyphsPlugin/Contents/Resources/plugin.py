@@ -13,6 +13,7 @@
 
 from GlyphsApp import *
 from GlyphsApp.plugins import *
+from Foundation import NSFileManager
 import os
 
 class Backuper(GeneralPlugin):
