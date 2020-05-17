@@ -12,15 +12,17 @@
 ###########################################################################################################
 
 from __future__ import print_function
+import objc
 from GlyphsApp import *
 from GlyphsApp.plugins import *
 from Foundation import NSFileManager
 import os
 
 class Backuper(GeneralPlugin):
+	@objc.python_method
 	def start(self):
 		Glyphs.addCallback(self.doBackup_, DOCUMENTOPENED)
-	
+
 	def doBackup_(self, sender):
 		document = sender.object()
 		importedVersion = document.valueForKey_("importedVersion")
@@ -37,8 +39,8 @@ class Backuper(GeneralPlugin):
 			
 			if fileManager.isReadableFileAtPath_(documentPath):
 				NSFileManager.defaultManager().copyItemAtPath_toPath_error_(documentPath, bachupPath, None)
-	
+
+	@objc.python_method
 	def __file__(self):
 		"""Please leave this method unchanged"""
 		return __file__
-	
