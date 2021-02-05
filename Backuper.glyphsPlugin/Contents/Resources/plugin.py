@@ -25,6 +25,8 @@ class Backuper(GeneralPlugin):
 
 	def doBackup_(self, sender):
 		document = sender.object()
+		if document.fileURL() is None:
+			return
 		importedVersion = document.valueForKey_("importedVersion")
 		if importedVersion != None and int(Glyphs.buildNumber) > int(importedVersion):
 			documentPath = document.fileURL().path()
